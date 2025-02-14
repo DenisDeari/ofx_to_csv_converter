@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OFX to CSV Converter</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Global styles */
+    body {
+      margin: 0;
+      padding: 0;
+      /* Updated darker gradient background */
+      background: linear-gradient(135deg, #121212, #1c1c1c);
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      flex-direction: column; /* This stacks items vertically */
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: #fff;
+    }
+    /* Container styles */
+    .container {
+      background: rgba(0, 0, 0, 0.65);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      width: 90%;
+      max-width: 600px;
+      animation: fadeIn 1s ease-out;
+      margin-bottom: 1rem;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Heading */
+    h1 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      background: -webkit-linear-gradient(#f39c12, #d35400);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    /* Form elements */
+    label {
+      font-weight: 700;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    input[type="file"] {
+      width: 100%;
+      padding: 0.7rem;
+      border: none;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      background-color: #ecf0f1;
+      color: #2c3e50;
+      font-weight: 700;
+    }
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+      margin-bottom: 1rem;
+    }
+    button:hover {
+      transform: scale(1.03);
+    }
+    .submit-btn {
+      background-color: #e67e22;
+      color: #fff;
+    }
+    .clear-btn {
+      background-color: #34495e;
+      color: #fff;
+    }
+    /* Output type styles */
+    .output-type {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    .output-type p {
+      margin: 0 0 0.5rem 0;
+      font-weight: 700;
+    }
+    .radio-group {
+      display: flex;
+      justify-content: space-around;
+    }
+    .radio-group label {
+      font-weight: 700;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+    .radio-group input[type="radio"] {
+      margin-right: 0.5rem;
+    }
+    .radio-group label:hover {
+      color: #f1c40f;
+    }
+    /* Footer */
+    footer {
+      font-size: 0.85rem;
+      text-align: center;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>OFX to CSV Converter</h1>
+    <form action="/" method="post" enctype="multipart/form-data">
+      <label for="ofx_file">Select OFX file(s):</label>
+      <input type="file" name="ofx_file" id="ofx_file" accept=".ofx" multiple>
+      
+      <button type="button" class="clear-btn" id="clearButton">Clear Files</button>
+      
+      <div class="output-type">
+        <p>Select output type:</p>
+        <div class="radio-group">
+          <label>
+            <input type="radio" name="output_type" value="single" checked> Single CSV
+          </label>
+          <label>
+            <input type="radio" name="output_type" value="multiple"> One CSV per OFX (ZIP)
+          </label>
+        </div>
+      </div>
+      
+      <button type="submit" class="submit-btn">Convert</button>
+    </form>
+  </div>
+  <footer>
+    Software bereitgestellt von Denis Deari
+  </footer>
+  <script>
+    document.getElementById("clearButton").addEventListener("click", function() {
+      document.getElementById("ofx_file").value = "";
+    });
+  </script>
+</body>
+</html>
